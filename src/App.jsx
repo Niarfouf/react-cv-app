@@ -2,6 +2,7 @@ import General from './components/General'
 import Educational from './components/Educational'
 import Practical from './components/Practical'
 import Cv from './components/Cv'
+import './styles/styles.css'
 import { useState } from 'react'
 
 let keyEduc = 0
@@ -57,23 +58,33 @@ export default function App() {
     }
 
     return (
-        <>
-            <General onSubmit={savePersonalDetails} />
-            <Educational
-                educationalData={Object.entries(educationalObjects)}
-                saveFunc={saveEducationalDetails}
-                deleteFunc={deleteEducationalObject}
-            />
-            <Practical
-                practicalData={Object.entries(practicalObjects)}
-                saveFunc={savePracticalDetails}
-                deleteFunc={deletePracticalObject}
-            />
-            <Cv
-                generalDetails={validPersonalDetails}
-                educationalDetails={educationalObjects}
-                practicalDetails={practicalObjects}
-            />
-        </>
+        <main className="main-content">
+            <section className="edit-cv">
+                <div className="personal">
+                    <General onSubmit={savePersonalDetails} />
+                </div>
+                <div className="educational">
+                    <Educational
+                        educationalData={Object.entries(educationalObjects)}
+                        saveFunc={saveEducationalDetails}
+                        deleteFunc={deleteEducationalObject}
+                    />
+                </div>
+                <div className="professional">
+                    <Practical
+                        practicalData={Object.entries(practicalObjects)}
+                        saveFunc={savePracticalDetails}
+                        deleteFunc={deletePracticalObject}
+                    />
+                </div>
+            </section>
+            <section className="cv">
+                <Cv
+                    generalDetails={validPersonalDetails}
+                    educationalDetails={educationalObjects}
+                    practicalDetails={practicalObjects}
+                />
+            </section>
+        </main>
     )
 }
